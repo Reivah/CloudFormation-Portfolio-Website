@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo 'Building static website (nothing to implement...)'
+  post_build:
+    commands:
+      - echo "Deploing to S3"
+      - aws s3 sync . s3://$jakub-grzelak-cf-website --delete --exclude ".git/*" --exclude "buildspec.yml"
+      - aws cloudfront create-invalidation --distribution-id $E3URJIW57Q9D0Q --paths "/*"
+  
+artifacts:
+  files:
+    - '**/*'
