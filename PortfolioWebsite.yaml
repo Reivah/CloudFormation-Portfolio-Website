@@ -50,13 +50,23 @@ Resources:
   CodeBuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
-      Name: jakub-grzelak-website-portfolio
-      Description: Project to automate my website
+      Name: jakub-grzelak-portfolio-website
+      Description: CodeBuild project for my portfolio website
       Source:
         Type: GITHUB
-        Location: https://github.com/Reivah/jakub-grzelak.com.git
+        Location: https://github.com/Reivah/CloudFormation-Portfolio-Website.git
         GitCloneDepth: 1
-        BuildSpec: 
+        Auth:
+          Resource: !Ref CodeBuildSourceCredential
+          Type: OAUTH
+      Triggers:
+        Webhook: true
+        FilterGroups:
+          - - Type: EVENT
+              Pattern: PUSH
+            - Type: HEAD_REF
+              Pattern: ^refs/heads/main
+    
         
 Outputs:
   OutputWebsiteURL:
