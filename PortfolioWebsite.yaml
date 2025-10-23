@@ -110,7 +110,18 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource:
-                  - !Sub 
+                  - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:jakub-grzelak-website-portfolio-CloudWatchLogs
+                  - !Sub arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:jakub-grzelak-website-portfolio-CloudWatchLogs:*
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketAcl
+                  - s3:GetBucketLocation
+                Resource:
+                  - arn:aws:s3:::jakub-grzelak-cf-website
+                  - arn:aws:s3:::jakub-grzelak-cf-website/*
       Path: /
         
 Outputs:
