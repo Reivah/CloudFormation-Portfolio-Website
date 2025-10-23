@@ -122,6 +122,10 @@ Resources:
                 Resource:
                   - arn:aws:s3:::jakub-grzelak-cf-website
                   - arn:aws:s3:::jakub-grzelak-cf-website/*
+              - Effect: Allow
+                Action:
+                  - cloudfront:CreateInvalidation
+                Resource: "*"
       Path: /
         
 Outputs:
