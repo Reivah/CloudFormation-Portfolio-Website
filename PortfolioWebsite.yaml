@@ -103,7 +103,7 @@ Resources:
       Policies:
         - PolicyName: policy-for-codebuild-website-portfolio
           PolicyDocument: 
-            Version: 2012-1017
+            Version: 2012-10-17
             Statement:
               - Effect: Allow
                 Action:
