@@ -85,6 +85,30 @@ Resources:
     Properties:
       LogGroupName: jakub-grzelak-website-portfolio-CloudWatchLogs
       RetentionInDays: 14
+  
+  CodeBuildProjectRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: CodeBuild-role-access-for-website-portfolio
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - codebuild.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: policy-for-codebuild-website-portfolio
+          PolicyDocument: 
+            Version: 2012-1017
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+    
+      Path: /
         
 Outputs:
   OutputWebsiteURL:
