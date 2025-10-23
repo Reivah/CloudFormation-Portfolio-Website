@@ -108,7 +108,9 @@ Resources:
                 Action:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
-    
+                  - logs:PutLogEvents
+                Resource:
+                  - !Sub 
       Path: /
         
 Outputs:
