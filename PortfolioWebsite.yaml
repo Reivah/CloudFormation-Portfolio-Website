@@ -70,7 +70,14 @@ Resources:
         Type: LINUX_CONTAINER
         Image: aws/codebuild/standard:7.0
         ComputeType: BUILD_GENERAL1_SMALL
-    
+      Artifacts:
+        Type: S3
+        Location: !Sub arn:aws:s3:::${PortoflioWebsiteBucket}
+        Name: '/'
+        EncryptionDisabled: true
+      LogsConfig:
+        CloudWatchLogs:
+          Status: 
         
 Outputs:
   OutputWebsiteURL:

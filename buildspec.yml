@@ -13,10 +13,10 @@ phases:
       - npm run build
   post_build:
     commands:
-      - echo "Deploing to S3"
-      - aws s3 sync . s3://jakub-grzelak-cf-website --delete --exclude ".git/*" --exclude "buildspec.yml"
+      - echo "Creating cloudfront invalidation for changes"
       - aws cloudfront create-invalidation --distribution-id E3URJIW57Q9D0Q --paths "/*"
   
 artifacts:
+  base-directory: build
   files:
     - '**/*'
