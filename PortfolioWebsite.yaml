@@ -79,6 +79,12 @@ Resources:
         CloudWatchLogs:
           Status: ENABLED
           GroupName: jakub-grzelak-website-portfolio-CloudWatchLogs
+  
+  CloudWatchLogsRetention:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: jakub-grzelak-website-portfolio-CloudWatchLogs
+      RetentionInDays: 14
         
 Outputs:
   OutputWebsiteURL:
