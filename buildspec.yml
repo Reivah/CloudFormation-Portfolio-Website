@@ -5,12 +5,10 @@ phases:
     runtime-version:
       nodejs: 18
     commands:
-      - echo "installing node.js"
-      - npm install
+      - echo "nothing to install"
   build:
     commands:
-      - echo 'Building javascript project'
-      - npm run build
+      - echo 'nothing to build'
   post_build:
     commands:
       - echo "Creating cloudfront invalidation for changes"
