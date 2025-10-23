@@ -77,7 +77,8 @@ Resources:
         EncryptionDisabled: true
       LogsConfig:
         CloudWatchLogs:
-          Status: 
+          Status: ENABLED
+          GroupName: jakub-grzelak-website-portfolio-CloudWatchLogs
         
 Outputs:
   OutputWebsiteURL:
