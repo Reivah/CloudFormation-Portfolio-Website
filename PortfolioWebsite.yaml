@@ -5,6 +5,11 @@ Parameters:
     MinLength: 10
     ConstraintDescription: Personal GitHub token is required
   
+  ParameterForDomainName:
+    Type: String
+    Default: jakub-grzelak.com
+    Description: Please specify name for main domain should be same as website URL
+  
   ParameterForSubdomainWebsite:
     Type: String
     Default: www
@@ -160,5 +165,8 @@ Outputs:
   OpenWebsiteURL:
     Description: Open portfolio website S3
     Value: !GetAtt  PortoflioWebsiteBucket.WebsiteURL
+  OpenSubdomainURL:
+    Description: Open subdomain S3
+    Value: !GetAtt  SubdomainWebsiteBucket.WebsiteURL
        
         
