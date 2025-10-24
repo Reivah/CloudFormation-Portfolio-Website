@@ -54,7 +54,7 @@ Resources:
       PolicyDocument:
           Version: 2012-10-17
           Statement:
-            - Sid: GetObjectForPublic
+            - Sid: GetObjectForPublicRead
               Effect: Allow
               Principal: '*'
               Action: 's3:GetObject'
@@ -63,6 +63,9 @@ Resources:
                 - - 'arn:aws:s3:::' 
                   - !Ref PortoflioWebsiteBucket
                   - /*
+  
+ 
+        
     
   CodeBuildSourceCredential:
     Type: AWS::CodeBuild::SourceCredential
@@ -154,10 +157,8 @@ Resources:
       Path: /
         
 Outputs:
-  OutputWebsiteURL:
-    Description: Navigate to website URL
-    Value: !GetAtt
-      - PortoflioWebsiteBucket
-      - WebsiteURL
-    
+  OpenWebsiteURL:
+    Description: Open portfolio website S3
+    Value: !GetAtt  PortoflioWebsiteBucket.WebsiteURL
+       
         
