@@ -8,9 +8,9 @@ Parameters:
 Resources:
   PortoflioWebsiteBucket:
     Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
     Properties:
       BucketName: jakub-grzelak.com
-      DeletionPolicy: Retain
       WebsiteConfiguration:
         IndexDocument: index.html
       OwnershipControls:
@@ -23,6 +23,19 @@ Resources:
         RestrictPublicBuckets: false
       VersioningConfiguration:
         Status: Enabled
+
+  SubdomainWebsiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: www.jakub-grzelak.com
+      WebsiteConfiguration:
+        RedirectAllRequestsTo:
+          HostName: !Ref PortoflioWebsiteBucket
+          Protocol: http
+      
+        
+    
 
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
