@@ -8,12 +8,18 @@ Parameters:
   ParameterForDomainName:
     Type: String
     Default: jakub-grzelak.com
-    Description: Please specify name for main domain should be same as website URL
+    Description: Please specify name for main domain should be the same as registered domain name in Route53
   
   ParameterForSubdomainWebsite:
     Type: String
     Default: www
-    Description: If there is no 'www' the second bucket will not be created
+    Description: Insert 'www' for creating subdomain
+
+  ParameterForHostedZoneId:
+    Type: String
+    Default: Z02492012EK1MKEJXJKMM
+    Description: Input hosted zone ID from route 53
+    MinLength: 10
 
 Conditions:
   ConditionForSubdomainBucket:
@@ -153,13 +159,22 @@ Resources:
                   - s3:GetBucketAcl
                   - s3:GetBucketLocation
                 Resource:
-                  - arn:aws:s3:::jakub-grzelak-cf-website
-                  - arn:aws:s3:::jakub-grzelak-cf-website/*
+                  - arn:aws:s3:::jakub-grzelak.com
+                  - arn:aws:s3:::jakub-grzelak.com/*
               - Effect: Allow
                 Action:
                   - cloudfront:CreateInvalidation
                 Resource: "*"
       Path: /
+
+  Route53RecordSetGroupForMainDomain:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref ParameterForHostedZoneId
+      RecordSets:
+        - Name: !Ref ParameterForDomainName
+          Type: 
+      
         
 Outputs:
   OpenWebsiteURL:
