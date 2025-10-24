@@ -9,7 +9,8 @@ Resources:
   PortoflioWebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: jakub-grzelak-cf-website
+      BucketName: jakub-grzelak.com
+      DeletionPolicy: Retain
       WebsiteConfiguration:
         IndexDocument: index.html
       OwnershipControls:
