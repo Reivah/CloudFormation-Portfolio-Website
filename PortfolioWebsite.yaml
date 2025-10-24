@@ -4,6 +4,15 @@ Parameters:
     Description: Provide your personal GitHub access token for CodeBuild to access your GitHub repo
     MinLength: 10
     ConstraintDescription: Personal GitHub token is required
+  
+  ParameterForSubdomainWebsite:
+    Type: String
+    Default: www
+    Description: If there is no 'www' the second bucket will not be created
+
+Conditions:
+  ConditionForSubdomainBucket:
+    !Not [!Equals [!Ref ParameterForSubdomainWebsite, '']]
 
 Resources:
   PortoflioWebsiteBucket:
@@ -26,6 +35,7 @@ Resources:
 
   SubdomainWebsiteBucket:
     Type: AWS::S3::Bucket
+    Condition: ConditionForSubdomainBucket
     DeletionPolicy: Retain
     Properties:
       BucketName: www.jakub-grzelak.com
