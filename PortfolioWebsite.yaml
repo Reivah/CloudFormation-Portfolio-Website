@@ -196,7 +196,7 @@ Resources:
           SslSupportMethod: sni-only
         DefaultRootObject: index.html
 
-  Route53RecordSetGroupForMainDomain:
+  ApexRoute53RecordSetGroup:
     Type: AWS::Route53::RecordSetGroup
     Properties:
       HostedZoneId: !Ref ParameterForHostedZoneId
@@ -204,7 +204,18 @@ Resources:
         - Name: !Ref ParameterForDomainName
           Type: A
           AliasTarget:
-            DNSName: d12vqxb0tlwqfs.cloudfront.net
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
+            HostedZoneId: !Ref ParameterForHostedZoneId
+
+  SubDomainRoute53RecordSetGroup:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref ParameterForHostedZoneId
+      RecordSets:
+        - Name: !Sub ${ParameterForSubdomainWebsite}.${ParameterForDomainName}
+          Type: A
+          AliasTarget:
+            DNSName: !GetAtt CloudFrontDistribution.DomainName
             HostedZoneId: !Ref ParameterForHostedZoneId
         
 Outputs:
