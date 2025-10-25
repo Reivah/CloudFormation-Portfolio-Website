@@ -189,6 +189,11 @@ Resources:
             - HEAD
           CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
           OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf
+          Compress: true
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:375785164955:certificate/dd6c8148-b681-46d3-8d73-291978030771
+          MinimumProtocolVersion: TLSv1.2_2021
+          SslSupportMethod: sni-only
 
   Route53RecordSetGroupForMainDomain:
     Type: AWS::Route53::RecordSetGroup
