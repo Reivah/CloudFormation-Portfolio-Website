@@ -167,14 +167,37 @@ Resources:
                 Resource: "*"
       Path: /
 
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: Creating distribution for jakub-grzelak.com
+        Enabled: true
+        Origins:
+          - Id: JakubGrzelakWebsite
+            DomainName: !GetAtt PortoflioWebsiteBucket.DomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          TargetOriginId: JakubGrzelakWebsite
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+
   Route53RecordSetGroupForMainDomain:
     Type: AWS::Route53::RecordSetGroup
     Properties:
       HostedZoneId: !Ref ParameterForHostedZoneId
       RecordSets:
         - Name: !Ref ParameterForDomainName
-          Type: 
-      
+          Type: A
+          AliasTarget:
+            DNSName: d12vqxb0tlwqfs.cloudfront.net
+            HostedZoneId: !Ref ParameterForHostedZoneId
         
 Outputs:
   OpenWebsiteURL:
