@@ -194,6 +194,7 @@ Resources:
           AcmCertificateArn: arn:aws:acm:us-east-1:375785164955:certificate/dd6c8148-b681-46d3-8d73-291978030771
           MinimumProtocolVersion: TLSv1.2_2021
           SslSupportMethod: sni-only
+        DefaultRootObject: index.html
 
   Route53RecordSetGroupForMainDomain:
     Type: AWS::Route53::RecordSetGroup
