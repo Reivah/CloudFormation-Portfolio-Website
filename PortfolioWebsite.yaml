@@ -21,6 +21,7 @@ Parameters:
     Description: Input hosted zone ID from route 53
     MinLength: 10
 
+  
 Conditions:
   ConditionForSubdomainBucket:
     !Not [!Equals [!Ref ParameterForSubdomainWebsite, '']]
@@ -178,7 +179,11 @@ Resources:
         Enabled: true
         Origins:
           - Id: JakubGrzelakWebsite
-            DomainName: !GetAtt PortoflioWebsiteBucket.WebsiteURL
+            DomainName: !Select
+              - 1
+              - !Split
+                - '//'
+                - !GetAtt PortoflioWebsiteBucket.WebsiteURL    
             CustomOriginConfig:
               OriginProtocolPolicy: http-only
         DefaultCacheBehavior:

@@ -12,7 +12,7 @@ phases:
   post_build:
     commands:
       - echo "Creating cloudfront invalidation for changes"
-      - aws cloudfront create-invalidation --distribution-id E3URJIW57Q9D0Q --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E1OGMSJHBAMFPG --paths "/*"
   
 artifacts:
   files:
