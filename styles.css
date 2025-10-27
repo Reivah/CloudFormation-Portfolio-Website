@@ -130,9 +130,10 @@ hr {
 }
 
 .my-photo img {
-	height: 230px;
-	width: 230px;
+	height: 250px;
+	width: 250px;
 	border-radius: 50%;
+	object-fit: cover;
 }
 
 /*Skills-Section*/
@@ -417,8 +418,8 @@ h2 {
 	}
 
 	.hero-section .my-photo img {
-		height: 150px;
-		width: 150px;
+		height: 180px;
+		width: 180px;
 	}
 
 	/*Timeline-section*/ 
