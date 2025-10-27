@@ -130,7 +130,7 @@ hr {
 }
 
 .my-photo img {
-	height: 300px;
+	height: 250px;
 	width: 230px;
 	border-radius: 50%;
 }
@@ -417,7 +417,7 @@ h2 {
 	}
 
 	.hero-section .my-photo img {
-		height: 190px;
+		height: 160px;
 		width: 150px;
 	}
 
