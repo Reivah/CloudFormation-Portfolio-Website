@@ -516,8 +516,8 @@ h2 {
 		padding: 0 20px;
 	}
 
-	.skills-section .sql-database{
-		align-items: end;
+	.skills-section .skill-icon .sql-text{
+		font-size: 16px;
 	}
 
 	/*projects-section*/
